@@ -9,14 +9,19 @@
 	<!-- JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+  	<script src="app.js"></script>
 </head>
-<body>
+<body ng-app="myApp">
 	<ul>
 		<li><a href="">Home</a></li>
 		<li><a href="">Supplier Survey</a></li>
 		<li><a href="">Supplier Database</a></li>
 	</ul>
 	
+	<h1>Hello {{user.name}}</h1>
+	<input type="text" ng-model="user.name" />
+
 	<div class="input">
 		<h3>Supplier Information</h3>
 		<form name="supplierInputForm">

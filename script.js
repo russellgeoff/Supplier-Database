@@ -8,6 +8,7 @@ $(document).ready(function(){
      		Industry: " + industryName + "</div>";
      	$(itemData).appendTo('.supplierList').fadeIn('slow');
      });
+
      $('input').focus(function () {
           $(this).css('outline-color', '#FF0000');
      });
