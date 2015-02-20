@@ -1,0 +1,17 @@
+[
+	{
+		"name":"Supplier of Metal",
+		"location": "San Jose, CA",
+		"industry": "metal"
+	},
+	{
+		"name":"Supplier of Plastic",
+		"location": "Atlanta, GA",
+		"industry": "plastic"
+	},
+	{
+		"name":"Supplier of Resin",
+		"location": "Baltimore, MD",
+		"industry": "resin"
+	}
+]
