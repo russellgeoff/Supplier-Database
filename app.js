@@ -1,10 +1,6 @@
 angular.module('myApp', ['firebase'])
-.controller('myController', function($scope, $http, $firebaseObject) {
+.controller('myController', function($scope, $http, $firebaseArray) {
   var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
-
-  var syncObject = $firebaseObject(ref);
-
-  syncObject.$bindTo($scope, "suppliers");
 
   $scope.user = {
     name: 'Supplier'
@@ -26,6 +22,8 @@ angular.module('myApp', ['firebase'])
     location:"places3"
   }];
 
+  $scope.suppliers = $firebaseArray(ref);
+
   // $http.get('suppliers.json')
   // .success(function (response) {
   //   console.log($scope.suppliers);
@@ -40,7 +38,7 @@ angular.module('myApp', ['firebase'])
     var location = $scope.newSupplier.location;
     var industry = $scope.newSupplier.industry;
     console.log($scope.suppliers);
-    $scope.suppliers.push({
+    $scope.suppliers.$add({
       name:name,
       location:location,
       industry:industry
