@@ -2,29 +2,21 @@ angular.module('myApp', ['firebase'])
 .controller('myController', function($scope, $http, $firebaseArray) {
   var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
 
-  $scope.suppliers =[
-  {
-    name:'Default Supplier Name 1',
-    location:'Default Supplier Location 1',
-    industry:'Default Industry 1'
-  },
-  {
-    name:'Default Supplier Name 2',
-    location:'Default Supplier Location 2',
-    industry:'Default Industry 2'
-  }];
-
   $scope.suppliers = $firebaseArray(ref);
+  $scope.newSupplier = {};
 
   $scope.add = function () {
-    var name = $scope.newSupplier.name;
-    var location = $scope.newSupplier.location;
-    var industry = $scope.newSupplier.industry;
-    console.log($scope.suppliers);
-    $scope.suppliers.$add({
-      name:name,
-      location:location,
-      industry:industry
-    });
+    if ($scope.newSupplier.name &&
+      $scope.newSupplier.location &&
+      $scope.newSupplier.industry){
+      $scope.suppliers.$add({
+        name:$scope.newSupplier.name,
+        location:$scope.newSupplier.location,
+        industry:$scope.newSupplier.industry
+      });
+    }
+    else {
+      console.log("No Data");
+    }
   };
 });
