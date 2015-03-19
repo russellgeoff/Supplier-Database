@@ -1,9 +1,10 @@
-angular.module('myApp', ['firebase'])
+angular.module('myApp', ['firebase', 'ui.bootstrap'])
 .controller('myController', function($scope, $http, $firebaseArray) {
-  var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
-
-  $scope.suppliers = $firebaseArray(ref);
   $scope.newSupplier = {};
+  $scope.alerts = [];
+
+  var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
+  $scope.suppliers = $firebaseArray(ref);
 
   $scope.add = function () {
     if ($scope.newSupplier.name &&
@@ -17,6 +18,17 @@ angular.module('myApp', ['firebase'])
     }
     else {
       console.log("No Data");
+      $scope.addAlert();
     }
+  };
+
+  $scope.addAlert = function (){
+    $scope.alerts.push({
+      type:'danger',
+      msg:'One of the fields below is empty!'
+    });
+  };
+  $scope.closeAlert = function (index){
+    $scope.alerts.splice(index, 1);
   };
 });
