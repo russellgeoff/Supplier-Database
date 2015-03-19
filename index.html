@@ -31,7 +31,7 @@
   	<body ng-controller="myController">
   		<div class="container">
   			<div class="page-header">
-  				<ul class="nav nav-pills">
+  				<ul class="nav nav-tabs">
   					<li><a href="#">Home</a></li>
   					<li class="active"><a href="#">Supplier Survey</a></li>
   					<li><a href="#">Supplier Database</a></li>
@@ -42,23 +42,19 @@
   				<h2>Supplier Information</h2>
   				<form name="supplierInputForm">
   					<div class="row">
-  						<div class="col-sm-6">Name:</div>
-  						<div class="col-sm-6"><input type="text" name="supplierName" ng-model="newSupplier.name"></div>
-  					</div>
-  					<div class="row">
-  						<div class="col-sm-6">Location:</div>
-  						<div class="col-sm-6"><input type="text" name="location" ng-model="newSupplier.location"></div>
-  					</div>
-  					<div class="row">
-  						<div class="col-sm-6">Industry:</div>
-  						<div class="col-sm-6"><input type="text" name="industry" ng-model="newSupplier.industry"></div>
+  						<div class="col-md-3"><input type="text" class="form-control" placeholder="Supplier XYZ" ng-model="newSupplier.name"></div>
+  						<div class="col-md-3">
+  							<div class="input-group">
+  								<span class="input-group-addon glyphicon glyphicon-globe"></span>
+  								<input type="text" class="form-control" placeholder="San Jose, CA" ng-model="newSupplier.location">
+  							</div>
+						</div>
+  						<div class="col-md-3"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
+	  					<div class="col-md-3">
+	  						<button class="btn btn-primary" ng-click="add()">Add to Database</button>
+	  					</div>
   					</div>
   				</form>
-  				<div class="row">
-  					<div class="col-xs-12">
-  						<button id="button" ng-click="add()">Add to Database</button>
-  					</div>
-  				</div>
   			</div>
   			<h2>List of Suppliers</h2>
   			<div class="row">
