@@ -1,5 +1,11 @@
-angular.module('myApp', [])
-.controller('myController', function($scope, $http) {
+angular.module('myApp', ['firebase'])
+.controller('myController', function($scope, $http, $firebaseObject) {
+  var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
+
+  var syncObject = $firebaseObject(ref);
+
+  syncObject.$bindTo($scope, "suppliers");
+
   $scope.user = {
     name: 'Supplier'
   };
@@ -20,14 +26,14 @@ angular.module('myApp', [])
     location:"places3"
   }];
 
-  $http.get('suppliers.json')
-  .success(function (response) {
-    console.log($scope.suppliers);
-    $scope.suppliers = response;
-  })
-  .error(function(err) {
-    alert(err);
-  });
+  // $http.get('suppliers.json')
+  // .success(function (response) {
+  //   console.log($scope.suppliers);
+  //   $scope.suppliers = response;
+  // })
+  // .error(function(err) {
+  //   alert(err);
+  // });
 
   $scope.add = function () {
     var name = $scope.newSupplier.name;
