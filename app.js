@@ -1,4 +1,4 @@
-angular.module('myApp', ['firebase', 'ui.bootstrap'])
+angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid'])
 .controller('myController', function($scope, $http, $firebaseArray) {
   $scope.newSupplier = {};
   $scope.alerts = [];
