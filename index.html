@@ -64,16 +64,7 @@
   				</form>
   			</div>
   			<h2>List of Suppliers</h2>
-  			<div class="row">
-  				<div class="col-sm-4"><b>Supplier Name</b></div>
-  				<div class="col-sm-4"><b>Supplier Location</b></div>
-  				<div class="col-sm-4"><b>Supplier Industry</b></div>
-  			</div>
-  			<div class="row" ng-repeat="supplier in suppliers">
-  					<div class="col-sm-4">{{supplier.name}}</div>
-  					<div class="col-sm-4">{{supplier.location}}</div>
-  					<div class="col-sm-4">{{supplier.industry}}</div>
-  			</div>
+  			<div class="supGrid" ui-grid="{data: suppliers}"></div>
   		</div>
   	</body>
   	</html>
