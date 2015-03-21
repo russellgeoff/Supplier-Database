@@ -1,4 +1,4 @@
-angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
+angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui.grid.selection'])
 .config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'bootstrap';
 })
@@ -45,6 +45,10 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
   $scope.gridOptions = {
     data: $scope.suppliers,
     enableSorting: true,
+    enableFiltering: true,
+    enableRowSelection: true,
+    enableRowHeaderSelection: false,
+    multiSelect: false,
     enableHorizontalScrollbar: 0,
     enableVerticalScrollbar: 0,
     columnDefs: [
