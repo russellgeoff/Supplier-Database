@@ -1,4 +1,7 @@
 angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
+.config(function(uiSelectConfig) {
+  uiSelectConfig.theme = 'bootstrap';
+})
 .filter('propsFilter', function() {
   return function(items, props) {
     var out = [];
@@ -31,7 +34,6 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
 })
 .controller('myController', function($scope, $http, $firebaseArray) {
   $scope.availCap = ['Plastic', 'Metal', 'Ceramic'];
-  $scope.selectedCapabilities = ['Plastic', 'Ceramic'];
 
   $scope.newSupplier = {};
   $scope.alerts = [];
@@ -48,7 +50,8 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
     columnDefs: [
       { name: 'Name', field: 'name'},
       { name: 'Location', field: 'location'},
-      { name: 'Industry', field: 'industry'}
+      { name: 'Industry', field: 'industry'},
+      { name: 'Capabilities', field: 'capabilities'}
     ],
     onRegisterApi: function (gridApi){
       $scope.gridApi = gridApi;
@@ -58,11 +61,13 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select'])
   $scope.add = function () {
     if ($scope.newSupplier.name &&
       $scope.newSupplier.location &&
-      $scope.newSupplier.industry){
+      $scope.newSupplier.industry &&
+      $scope.newSupplier.capabilities){
       $scope.suppliers.$add({
         name:$scope.newSupplier.name,
         location:$scope.newSupplier.location,
-        industry:$scope.newSupplier.industry
+        industry:$scope.newSupplier.industry,
+        capabilities:$scope.newSupplier.capabilities
       });
     }
     else {
