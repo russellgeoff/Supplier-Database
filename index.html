@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="./src/ui-grid.min.css">
+	<link rel="stylesheet" href="style.css">
 	<!-- JavaScript -->
 	<!-- Libraries -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -49,22 +50,24 @@
   				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   				<form name="supplierInputForm">
   					<div class="row">
-  						<div class="col-md-3"><input type="text" class="form-control" placeholder="Supplier XYZ" ng-model="newSupplier.name"></div>
-  						<div class="col-md-3">
+  						<div class="col-md-2"><input type="text" class="form-control" placeholder="Supplier XYZ" ng-model="newSupplier.name"></div>
+  						<div class="col-md-2">
   							<div class="input-group">
   								<span class="input-group-addon glyphicon glyphicon-globe"></span>
   								<input type="text" class="form-control" placeholder="San Jose, CA" ng-model="newSupplier.location">
   							</div>
 						</div>
+  						<div class="col-md-2"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
   						<div class="col-md-3"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
 	  					<div class="col-md-3">
 	  						<button class="btn btn-primary" ng-click="add()">Add to Database</button>
+	  						<button class="btn btn-danger" ng-click="removeLast()">Remove Last Row</button>
 	  					</div>
   					</div>
   				</form>
   			</div>
   			<h2>List of Suppliers</h2>
-  			<div class="supGrid" ui-grid="{data: suppliers}"></div>
+  			<div class="supGrid" ui-grid="gridOptions"></div>
   		</div>
   	</body>
   	</html>

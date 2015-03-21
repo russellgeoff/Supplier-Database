@@ -6,6 +6,22 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid'])
   var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
   $scope.suppliers = $firebaseArray(ref);
 
+  //Configure Grid
+  $scope.gridOptions = {
+    data: $scope.suppliers,
+    enableSorting: true,
+    enableHorizontalScrollbar: 0,
+    enableVerticalScrollbar: 0,
+    columnDefs: [
+      { name: 'Name', field: 'name'},
+      { name: 'Location', field: 'location'},
+      { name: 'Industry', field: 'industry'}
+    ],
+    onRegisterApi: function (gridApi){
+      $scope.gridApi = gridApi;
+    }
+  };
+
   $scope.add = function () {
     if ($scope.newSupplier.name &&
       $scope.newSupplier.location &&
@@ -20,6 +36,10 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid'])
       console.log("No Data");
       $scope.addAlert();
     }
+  };
+
+  $scope.removeLast = function () {
+    $scope.suppliers.$remove(6);
   };
 
   $scope.addAlert = function (){
