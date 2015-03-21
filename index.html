@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Supplier Database</title>
 	<!-- CSS -->
-	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.2/select.min.css">
 	<link rel="stylesheet" href="./src/ui-grid.min.css">
 	<link rel="stylesheet" href="style.css">
 	<!-- JavaScript -->
@@ -22,6 +22,8 @@
 	<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
 	<script src="./src/ui-grid.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.2/select.min.js"></script>
+	
 	<script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
@@ -58,10 +60,17 @@
   							</div>
 						</div>
   						<div class="col-md-2"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
-  						<div class="col-md-3"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
+  						<div class="col-md-3">
+  							<ui-select multiple ng-model="selectedCapabilities"  ng-disabled="disabled" class="form-control">
+  							  <ui-select-match placeholder="Select capabilities...">{{$item}}</ui-select-match>
+  							  <ui-select-choices repeat="cap in availCap | filter:$select.search">
+  							    {{cap}}
+  							  </ui-select-choices>
+  							</ui-select>
+						</div>
 	  					<div class="col-md-3">
 	  						<button class="btn btn-primary" ng-click="add()">Add to Database</button>
-	  						<button class="btn btn-danger" ng-click="removeLast()">Remove Last Row</button>
+	  						<!-- <button class="btn btn-danger" ng-click="removeLast()">Remove Last Row</button> -->
 	  					</div>
   					</div>
   				</form>
