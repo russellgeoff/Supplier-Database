@@ -93,4 +93,11 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
   $scope.closeAlert = function (index){
     $scope.alerts.splice(index, 1);
   };
+
+  $scope.addCapability = function (string) {
+    console.log('This worked');
+    console.log(string);
+    var output = string.copy();
+    return output;
+  };
 });

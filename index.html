@@ -59,7 +59,7 @@
           </div>
             <div class="col-md-2"><input type="text" class="form-control" placeholder="Industry" ng-model="newSupplier.industry"></div>
             <div class="col-md-3">
-              <ui-select multiple ng-model="newSupplier.capabilities" class="form-control">
+              <ui-select multiple tagging tagging-label="(Add New Capability)" ng-model="newSupplier.capabilities" class="form-control">
                 <ui-select-match placeholder="Select capabilities...">{{$item}}</ui-select-match>
                 <ui-select-choices repeat="cap in availCap | filter:$select.search">
                   {{cap}}
