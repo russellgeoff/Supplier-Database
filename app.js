@@ -39,12 +39,9 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
     name: undefined,
     location: undefined,
     industry: undefined,
-    capabilities: undefined,
-    getCapabilities: function (){
-      return this.capabilities[0] + ' ' + this.capabilities[1];
-    }
+    capabilities: undefined
   };
-  //$scope.newSuppler.capabiltiies Us an object to store each data point and also find a way to display it better
+  //$scope.newSuppler.capabilities Us an object to store each data point and also find a way to display it better
   $scope.alerts = [];
 
   var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
@@ -64,8 +61,23 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
       { name: 'Name', field: 'name'},
       { name: 'Location', field: 'location'},
       { name: 'Industry', field: 'industry'},
-      { name: 'Capabilities', field: 'capabilities'}
-    ],
+      { name: 'Capabilities',
+      field: 'capabilities',
+      filter: {
+        condition: function(searchTerm, cellValue){
+          if (cellValue && typeof cellValue === 'object') {
+            var returnVal = false;
+            cellValue.forEach(function(item){
+              console.log(item);
+              console.log(searchTerm);
+              returnVal = item.indexOf(searchTerm) >= 0;
+            });
+            return returnVal;
+          }
+          return 0;
+        }
+      }
+    }],
     onRegisterApi: function (gridApi){
       $scope.gridApi = gridApi;
     }
@@ -80,7 +92,7 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
         name:$scope.newSupplier.name,
         location:$scope.newSupplier.location,
         industry:$scope.newSupplier.industry,
-        capabilities:$scope.newSupplier.getCapabilities()
+        capabilities:$scope.newSupplier.capabilities,
       });
     }
     else {
