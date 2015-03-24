@@ -68,9 +68,10 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
           if (cellValue && typeof cellValue === 'object') {
             var returnVal = false;
             cellValue.forEach(function(item){
-              console.log(item);
-              console.log(searchTerm);
-              returnVal = item.indexOf(searchTerm) >= 0;
+              if (item.indexOf(searchTerm) >= 0){
+                returnVal = true;
+                return;
+              }
             });
             return returnVal;
           }
