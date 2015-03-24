@@ -1,4 +1,4 @@
-angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui.grid.selection'])
+angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui.grid.selection', 'ngTouch'])
 .config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'bootstrap';
 })
@@ -35,7 +35,16 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
 .controller('myController', function($scope, $http, $firebaseArray) {
   $scope.availCap = ['Plastic', 'Metal', 'Ceramic'];
 
-  $scope.newSupplier = {};
+  $scope.newSupplier = {
+    name: undefined,
+    location: undefined,
+    industry: undefined,
+    capabilities: undefined,
+    getCapabilities: function (){
+      return this.capabilities[0] + ' ' + this.capabilities[1];
+    }
+  };
+  //$scope.newSuppler.capabiltiies Us an object to store each data point and also find a way to display it better
   $scope.alerts = [];
 
   var ref = new Firebase('https://brilliant-heat-5688.firebaseio.com/');
@@ -71,7 +80,7 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
         name:$scope.newSupplier.name,
         location:$scope.newSupplier.location,
         industry:$scope.newSupplier.industry,
-        capabilities:$scope.newSupplier.capabilities
+        capabilities:$scope.newSupplier.getCapabilities()
       });
     }
     else {
