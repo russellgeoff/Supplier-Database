@@ -93,13 +93,21 @@ angular.module('myApp', ['firebase', 'ui.bootstrap', 'ui.grid', 'ui.select', 'ui
         name:$scope.newSupplier.name,
         location:$scope.newSupplier.location,
         industry:$scope.newSupplier.industry,
-        capabilities:$scope.newSupplier.capabilities,
+        capabilities:$scope.newSupplier.capabilities
       });
+      $scope.clearInputs();
     }
     else {
       console.log("No Data");
       $scope.addAlert();
     }
+  };
+
+  $scope.clearInputs = function () {
+    $scope.newSupplier.name = undefined;
+    $scope.newSupplier.location = undefined;
+    $scope.newSupplier.industry = undefined;
+    $scope.newSupplier.capabilities = undefined;
   };
 
   $scope.removeLast = function () {
